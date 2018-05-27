@@ -1,0 +1,6 @@
+<h3>Q. Create a networking policy such that only pods with the label access=granted can talk to it</h3>
+<p>
+    <li>Create an nginx pod and attach this policy to it.</li>
+    <li>Create a busybox pod and attempt to talk to nginx - should be blocked.</li>
+    <li>Attach the label to busybox and try again - should be allowed.</li>
+</p>
