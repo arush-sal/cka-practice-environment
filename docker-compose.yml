@@ -1,21 +1,21 @@
 version: '3.6'
 services:
-    gateone:
-        image: arush/gateone:http
-        ports:
-            - "8080:8000"
-        hostname: kubectl
-        networks:
-            - frontend
-        volumes:
-            - ssh_key:/root/.ssh/
-    lab:
-        image: arush/cka_lab
-        ports:
-            - "80:80"
-        networks:
-            - frontend
+  gateone:
+    image: arush/gateone:http
+    ports:
+    - "8080:8000"
+    hostname: kubectl
+    networks:
+    - frontend
+    volumes:
+    - ssh_key:/root/.ssh/
+  lab:
+    image: arush/cka_lab
+    ports:
+    - "80:80"
+    networks:
+    - frontend
 networks:
-    frontend: {}
+  frontend: {}
 volumes:
-    ssh_key: {}
+  ssh_key: {}
