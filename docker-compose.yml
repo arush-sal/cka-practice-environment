@@ -10,7 +10,7 @@ services:
         volumes:
             - ssh_key:/root/.ssh/
     lab:
-        image: arush/cka_lab
+        image: arush/cka_lab:latest
         ports:
             - "80:80"
         networks:
