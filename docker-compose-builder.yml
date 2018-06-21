@@ -1,0 +1,21 @@
+version: '3.6'
+services:
+  gateone:
+    build: ./gateone
+    ports:
+    - "8080:8000"
+    hostname: kubectl
+    networks:
+    - frontend
+    volumes:
+    - ssh_key:/root/.ssh/
+  lab:
+    build: ./lab
+    ports:
+    - "80:80"
+    networks:
+    - frontend
+networks:
+  frontend: {}
+volumes:
+  ssh_key: {}

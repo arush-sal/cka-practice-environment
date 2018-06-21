@@ -4,8 +4,9 @@
 
 Make sure that you have docker-compose installed([installation instructions](https://docs.docker.com/compose/install/)).
 
-To start the lab environment just run `docker-compose up -d` and point your browser at `http://localhost`
-
+To start the lab environment you can do either of the following two:
+* To use the prebuilt images run: `docker-compose up -d` and point your browser to `http://localhost`
+* To build the images yourself locally run: `docker-compose -f docker-compose-builder.yml up -d` and point your browser to `http://localhost`
 
 Things to note:
 * The setup currently is in `Bring Your Own Cluster` state.
