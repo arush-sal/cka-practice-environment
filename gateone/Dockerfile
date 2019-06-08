@@ -6,4 +6,8 @@ RUN apt-get update && apt-get install wget curl vim openssh-client iputils-ping 
 	&& mv ./kubectl /usr/local/bin/kubectl \
 	&& ssh-keygen -N "" -t rsa -f ~/.ssh/id_rsa \
         && cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys \
+	&& apt-get install -y bash-completion \
+	&& echo "source <(kubectl completion bash)" >> ~/.bashrc \
+	&& echo "alias k=kubectl" >> ~/.bashrc \
+	&& echo "complete -F __start_kubectl k" >> ~/.bashrc \
 	&& apt-get clean all
