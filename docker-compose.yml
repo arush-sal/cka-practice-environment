@@ -9,13 +9,17 @@ services:
     - frontend
     volumes:
     - ssh_key:/root/.ssh/
+    - kube_config:/root/.kube/
+    restart: always
   lab:
     image: arush/cka_lab
     ports:
     - "80:80"
     networks:
     - frontend
+    restart: always
 networks:
   frontend: {}
 volumes:
   ssh_key: {}
+  kube_config: {}
