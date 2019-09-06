@@ -6,7 +6,9 @@ thw orginal repo [arush-sal/cka-practice-environment](https://github.com/arush-s
 - and based on my fork, you can **provision the CKA practice environment on a Cloud VM, than visit it with its PUBLIC IP from your local browser**, that's pretty cool
 
 ## Quick Start (needn't clone the repo)
-**you must install docker before do this**. just copy and paste these shells, then visit it from your local browser
+**you must install docker before do this**. just copy and paste these shells from the two steps, then visit it from your local browser
+
+### Step 1: Frontend (webpage)
 ```
 export PUBLIC_IP=47.52.219.131
 export PRIVATE_IP=172.31.63.194
@@ -17,24 +19,6 @@ mv v1.23.2-docker-compose-Linux-x86_64 docker-compose
 chmod +x docker-compose
 mv docker-compose /usr/local/bin/
 docker-compose -v
-
-# provision k8s (k3s)
-curl -sfL https://get.k3s.io | sh -
-
-# check it
-kubectl get node
-
-# release port 80
-kubectl -n kube-system delete ds svclb-traefik
-kubectl -n kube-system delete job helm-install-traefik
-kubectl -n kube-system delete ds svclb-traefik
-kubectl -n kube-system delete deploy traefik
-
-# copy kubeconfig to /root/.kube/config
-cp /etc/rancher/k3s/k3s.yaml /root/.kube/config
-sed -i "s/localhost/$(echo $PRIVATE_IP)/g" /root/.kube/config
-
-kubectl --kubeconfig /root/.kube/config get node
 
 # gen docker-compose.yaml and up it
 cat > docker-compose.yaml << EOF
@@ -72,9 +56,36 @@ EOF
 docker-compose up -d
 
 docker ps -a | grep satomic
-
 ```
 
+### Step 2: Backend (k8s)
+
+**if you already have Kubernetes Cluster**, just copy your `kubeconfig.yaml` file contents to the `/root/.kube/config` file in the host for his CKA Practice Environment.
+```
+# maybe some command like
+cp /pathto_your_existed/kubeconfig.yaml /root/.kube/config
+```
+
+otherwise you can use [Rancher k3s](https://k3s.io/) to provision a mini Kubernetes to use.
+```
+# provision k8s (k3s)
+curl -sfL https://get.k3s.io | sh -
+
+# check it
+kubectl get node
+
+# release port 80
+kubectl -n kube-system delete ds svclb-traefik
+kubectl -n kube-system delete job helm-install-traefik
+kubectl -n kube-system delete ds svclb-traefik
+kubectl -n kube-system delete deploy traefik
+
+# copy kubeconfig to /root/.kube/config
+cp /etc/rancher/k3s/k3s.yaml /root/.kube/config
+sed -i "s/localhost/$(echo $PRIVATE_IP)/g" /root/.kube/config
+
+kubectl --kubeconfig /root/.kube/config get node
+```
 
 
 ## Getting the environment up and ready
@@ -139,6 +150,16 @@ and point your browser to `http://47.52.219.131`
 
 
 ### 3. provision k8s (k3s)
+
+#### **if you already have Kubernetes Cluster**
+copy your `kubeconfig` file contents to the `/root/.kube/config` file in the host for his CKA Practice Environment.
+```
+# maybe some command like
+cp /pathto_your_existed/kubeconfig.yaml /root/.kube/config
+```
+
+### Rancher k3s
+otherwise you can use [Rancher k3s](https://k3s.io/) to provision a mini Kubernetes to use.
 ```
 export PRIVATE_IP=172.31.63.194
 curl -sfL https://get.k3s.io | sh -
@@ -159,7 +180,7 @@ sed -i "s/localhost/$(echo $PRIVATE_IP)/g" /root/.kube/config
 kubectl --kubeconfig /root/.kube/config get node
 ```
 
-## uninstall
+## Uninstall
 ```
 docker-compose down
 /usr/local/bin/k3s-uninstall.sh
