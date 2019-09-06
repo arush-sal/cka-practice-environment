@@ -1,38 +1,70 @@
 # cka-practice-environment
 
+## the MOSTLY DIFFERENCE from the original repo
+thw orginal repo [arush-sal/cka-practice-environment](https://github.com/arush-sal/cka-practice-environment) 
+- only support the visit the CKA practice environment with URL `http://localhost` or `http://127.0.0.1`, that's **TOO BAD**, cause this constraint, you can **only use MacBook or CentOS/Ubuntu Desktop verison**, if you wanna use a VM on a Cloud, and visit the environment from your local browser, there is no way for you.
+- and based on this fork, you can **provision the CKA practice environment on a Cloud VM, than visit it with its PUBLIC IP from your local browser**, that's pretty cool
+
 ## Getting the environment up and ready
 
-Make sure that you have docker-compose installed([installation instructions](https://docs.docker.com/compose/install/)).
+### 1. install `docker-compose`
+Make sure that you have docker-compose installed([installation instructions](https://docs.docker.com/compose/install/)). Or you can run the `install-docker-compose.sh` shell scripts.
+```
+sh install-docker-compose.sh
+```
 
+### 2. up it
+
+assume the **PUBLIC IP** of your host (maybe a VM) is `47.52.219.131`, you need to change the `environment` values of `GATEONE_HTTP_SERVER` in the file `docker-compose.yaml` or `docker-compose-builder.yaml`
+
+example:
+```
+version: "3"
+
+services:
+
+  gateone:
+    image: satomic/gateone:http
+    ports:
+    - "8000:8000"
+    hostname: kubectl
+    networks:
+    - frontend
+    volumes:
+    - ssh_key:/root/.ssh/
+
+  lab:
+    image: satomic/cka_lab
+    entrypoint: /opt/entry.bash
+    ports:
+      - 80:80
+    networks:
+    - frontend
+    environment:
+      GATEONE_HTTP_SERVER: "47.52.219.131:8000" # you need to change this IP based on your real env
+
+networks:
+  frontend: {}
+volumes:
+  ssh_key: {}
+```
+ 
 To start the lab environment you can do either of the following two:
-* To use the prebuilt images run: `docker-compose up -d` and point your browser to `http://localhost`
-* To build the images yourself locally run: `docker-compose -f docker-compose-builder.yml up -d` and point your browser to `http://localhost`
 
-Things to note:
-* The setup currently is in `Bring Your Own Cluster` state.
-* If your reload the `exam.html` it will reset the timer as the timer currently being used is jQuery based. - solution WIP
-* Since we are using jQuery to initialize and connect to GateOne therefore the application needs to be reachable from your browser host on port 8080. - solution WIP
-
-
-
-## Run GateOne, very simple
+#### To use the prebuilt images
+run
 ```
-sudo docker run -itd \
---hostname kubectl \
---name gateone \
--p 8000:8000 \
--v /root/.ssh/:/root/.ssh/ \
-satomic/gateone:http
+docker-compose up -d
 ```
+and point your browser to `http://47.52.219.131`
 
-## Run nginx
+#### To build the images yourself locally 
+run
 ```
-docker rm -f ng
+docker-compose -f docker-compose-builder.yml up -d
+```
+and point your browser to `http://47.52.219.131`
 
-docker run -itd \
---name ng \
--p 80:80 \
---env GATEONE_HTTP_SERVER=115.28.209.81:8000 \
-satomic/cka_lab \
-/bin/bash -c "envsubst < /etc/nginx/conf.d/nginx.template > /etc/nginx/nginx.conf && exec nginx -g 'daemon off;'"
-```
+
+
+
