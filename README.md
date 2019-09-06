@@ -30,6 +30,7 @@ services:
     - frontend
     volumes:
     - ssh_key:/root/.ssh/
+    - /root/.kube/:/root/.kube/
 
   lab:
     image: satomic/cka_lab
