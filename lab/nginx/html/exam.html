@@ -128,7 +128,7 @@
         // Initialize Gate One:
         // the gateone url is reverse proxied by the frontend nginx, this is a littbe bit triky
         var gateone_url = parse('http://%s:80/wsapp', location.hostname);
-        console.log("gateone_url: %s", gateone_url)
+        console.log("powered by satomic@RancherLabs (xuefeng@rancher.com) gateone_url: %s", gateone_url)
         GateOne.init({ url: gateone_url });
         $('.selectpicker').selectpicker();
 
