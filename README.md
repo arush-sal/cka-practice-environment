@@ -145,7 +145,7 @@ and point your browser to `http://47.52.219.131`
 #### To build the images yourself locally 
 run
 ```
-docker-compose -f docker-compose-builder.yml up -d
+docker-compose -f docker-compose-builder.yaml up -d
 ```
 and point your browser to `http://47.52.219.131`
 
