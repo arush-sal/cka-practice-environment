@@ -46,7 +46,7 @@ services:
     networks:
     - frontend
     environment:
-      GATEONE_HTTP_SERVER: "${PUBLIC_IP}:8000" # you need to change this IP based on your real env
+      GATEONE_HTTP_SERVER: "${PUBLIC_IP}:8000"
 
 networks:
   frontend: {}
