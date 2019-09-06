@@ -1,4 +1,4 @@
-# cka-practice-environment
+# CKA Practice Environment
 
 ## the MOSTLY DIFFERENCE from the original repo
 thw orginal repo [arush-sal/cka-practice-environment](https://github.com/arush-sal/cka-practice-environment) 
