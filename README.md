@@ -10,6 +10,7 @@ thw orginal repo [arush-sal/cka-practice-environment](https://github.com/arush-s
 
 ### Step 1: Frontend (webpage)
 ```
+# you need to change these two env to your real value, if you have no public ip, just set the PUBLIC_IP same as your PRIVATE_IP
 export PUBLIC_IP=47.52.219.131
 export PRIVATE_IP=172.31.63.194
 
