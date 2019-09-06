@@ -70,16 +70,10 @@ cp /pathto_your_existed/kubeconfig.yaml /root/.kube/config
 otherwise you can use [Rancher k3s](https://k3s.io/) to provision a mini Kubernetes to use.
 ```
 # provision k8s (k3s)
-curl -sfL https://get.k3s.io | sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--no-deploy traefik" sh -
 
 # check it
 kubectl get node
-
-# release port 80
-kubectl -n kube-system delete ds svclb-traefik
-kubectl -n kube-system delete job helm-install-traefik
-kubectl -n kube-system delete ds svclb-traefik
-kubectl -n kube-system delete deploy traefik
 
 # copy kubeconfig to /root/.kube/config
 cp /etc/rancher/k3s/k3s.yaml /root/.kube/config
@@ -163,16 +157,11 @@ cp /pathto_your_existed/kubeconfig.yaml /root/.kube/config
 otherwise you can use [Rancher k3s](https://k3s.io/) to provision a mini Kubernetes to use.
 ```
 export PRIVATE_IP=172.31.63.194
-curl -sfL https://get.k3s.io | sh -
+
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--no-deploy traefik" sh -
 
 # check it
 kubectl get node
-
-# release port 80
-kubectl -n kube-system delete ds svclb-traefik
-kubectl -n kube-system delete job helm-install-traefik
-kubectl -n kube-system delete ds svclb-traefik
-kubectl -n kube-system delete deploy traefik
 
 # copy kubeconfig to /root/.kube/config
 cp /etc/rancher/k3s/k3s.yaml /root/.kube/config
