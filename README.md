@@ -155,7 +155,7 @@ copy your `kubeconfig` file contents to the `/root/.kube/config` file in the hos
 cp /pathto_your_existed/kubeconfig.yaml /root/.kube/config
 ```
 
-### Rancher k3s
+#### Rancher k3s
 otherwise you can use [Rancher k3s](https://k3s.io/) to provision a mini Kubernetes to use.
 ```
 export PRIVATE_IP=172.31.63.194
