@@ -19,10 +19,8 @@ services:
       - 80:80
     networks:
     - frontend
-    volumes:
-      - ./entry.bash:/opt/entry.bash:ro
     environment:
-      GATEONE_HTTP_SERVER: "115.28.209.81:8000"
+      GATEONE_HTTP_SERVER: "47.52.219.131:8000"
 
 networks:
   frontend: {}
