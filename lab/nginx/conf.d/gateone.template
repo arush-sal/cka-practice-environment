@@ -1,6 +1,6 @@
 upstream websocket {
     # 114.215.125.108:8000
-    server ${GATEONE_HTTP_SERVER};
+    server $GATEONE_HTTP_SERVER;
 }
 
 server {
