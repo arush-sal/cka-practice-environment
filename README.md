@@ -5,6 +5,8 @@ thx the orginal repo [arush-sal/cka-practice-environment](https://github.com/aru
 - only support visit the CKA practice environment with URL `http://localhost` or `http://127.0.0.1`, that's **TOO BAD**, cause this constraint, you can **only use MacBook or CentOS/Ubuntu Desktop verison**, if you wanna use a VM on a Cloud, and visit the environment from your local browser, there is no way for you.
 - and based on my fork, you can **provision the CKA practice environment on a Cloud VM, than visit it with its PUBLIC IP from your local browser**, that's pretty cool
 
+![avatar](/images/cka-exam.png)
+
 ## Quick Start (needn't clone the repo)
 **you must install docker before do this**. just copy and paste these shells from the two steps, then visit it from your local browser
 
