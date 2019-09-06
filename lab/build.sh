@@ -1,0 +1,1 @@
+sudo docker build -t satomic/cka_lab .
