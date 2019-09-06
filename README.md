@@ -27,9 +27,12 @@ satomic/gateone:http
 
 ## Run nginx
 ```
-sudo docker run -itd \
+docker rm -f ng
+
+docker run -itd \
 --name ng \
 -p 80:80 \
---env GATEONE_HTTP_SERVER="114.215.125.108:8000" \
-satomic/cka_lab
+--env GATEONE_HTTP_SERVER=115.28.209.81:8000 \
+satomic/cka_lab \
+/bin/bash -c "envsubst < /etc/nginx/conf.d/nginx.template > /etc/nginx/nginx.conf && exec nginx -g 'daemon off;'"
 ```
