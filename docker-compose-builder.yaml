@@ -12,7 +12,7 @@ services:
     volumes:
     - ssh_key:/root/.ssh/
 
-  nginx:
+  lab:
     build: ./lab
     entrypoint: /opt/entry.bash
     ports:
