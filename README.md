@@ -17,8 +17,8 @@ export PUBLIC_IP=47.52.219.131
 export PRIVATE_IP=172.31.63.194
 
 # install docker-compose 
-wget https://www.cnrancher.com/download/compose/v1.23.2-docker-compose-Linux-x86_64
-mv v1.23.2-docker-compose-Linux-x86_64 docker-compose
+wget https://docs.rancher.cn/download/compose/v1.24.1-docker-compose-Linux-x86_64
+mv v1.24.1-docker-compose-Linux-x86_64 docker-compose
 chmod +x docker-compose
 mv docker-compose /usr/local/bin/
 docker-compose -v
